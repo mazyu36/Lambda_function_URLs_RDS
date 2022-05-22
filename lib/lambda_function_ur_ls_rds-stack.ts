@@ -4,7 +4,7 @@ import { aws_rds as rds } from 'aws-cdk-lib';
 import { aws_lambda as lambda } from 'aws-cdk-lib';
 import * as path from 'path';
 import { aws_ec2 as ec2 } from 'aws-cdk-lib';
-export class LambdaFunctionUrLsRdsStack extends Stack {
+export class LambdaFunctionURLsRdsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 

@@ -1,14 +1,12 @@
-# Welcome to your CDK TypeScript project
+# Lambda Functions URLとRDS連携
+Lambda Functions URLを使用して、RDS PRoxy経由でRDSとの連携を行う。
 
-This is a blank project for CDK development with TypeScript.
+## アーキテクチャ
+![Architecture](images/architecture.svg)
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+* Lambdaはプライベートサブネットに配置
+  * パブリックサブネットに置いても、パブリックIPが付与されないのでそのままではインターネットアクセスができない。VPC外にも接続できない。そのためプライベートサブネットに配置
+* NAT Gateway等は無いが、Functions URLを使用してリプライも返ってくる
+  * パブリックに公開しているから
+* DBの接続情報はSecrets Managerから取得
+  * RDS Proxyの認証のため。

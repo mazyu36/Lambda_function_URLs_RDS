@@ -58,6 +58,11 @@ def handler(event, context):
                 cur.execute('create database test_db2')
     """
 
+    with get_connection(rds_secret) as connection:
+        with connection.cursor() as cur:
+            cur.execute(
+                "CREATE TABLE employee(id serial primary key, name text)")
+
     # SQLを実行
     with get_connection(rds_secret) as connection:
         with connection.cursor() as cur:
